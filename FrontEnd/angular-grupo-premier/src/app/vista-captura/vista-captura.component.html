@@ -1,0 +1,151 @@
+<section>
+    <mat-card>
+        <mat-card-content>
+            <h2>Datos del Cliente</h2>
+            <form [formGroup]="usuario">
+                <mat-form-field appearance="outline" class="input-text">
+                    <mat-label for="nombre">Nombre</mat-label>
+                    <input for="nombre" formControlName='nombre' matInput  [errorStateMatcher]="matcher">
+                </mat-form-field>
+                
+                <mat-form-field appearance="outline" class="input-text">
+                    <mat-label for="primer-apellido">Primer Apellido</mat-label>
+                    <input for="primer-apellido" formControlName='primerApellido' matInput>
+                </mat-form-field>
+        
+                <mat-form-field appearance="outline" class="input-text">
+                    <mat-label for="segundo-apellido">Segundo Apellido</mat-label>
+                    <input for="segundo-apellido" formControlName='segundoApellido' matInput>
+                </mat-form-field>
+        
+                <mat-form-field appearance="outline" class="input-text">
+                    <mat-label for="calle">Calle</mat-label>
+                    <input for="calle" formControlName='calle' matInput>
+                </mat-form-field>
+        
+                <mat-form-field appearance="outline" class="input-text">
+                    <mat-label for="numero">Numero</mat-label>
+                    <input for="numero" formControlName='numero' matInput>
+                </mat-form-field>
+        
+                <mat-form-field appearance="outline" class="input-text">
+                    <mat-label for="colonia">Colonia</mat-label>
+                    <input for="colonia" formControlName='colonia' matInput>
+                </mat-form-field>
+        
+                <mat-form-field appearance="outline" class="input-text">
+                    <mat-label for="codigo-postal">Codigo Postal</mat-label>
+                    <input for="codigo-postal" formControlName='codigoPostal' matInput>
+                </mat-form-field>
+        
+                <mat-form-field appearance="outline" class="input-text">
+                    <mat-label for="telefono">Telefono</mat-label>
+                    <input for="telefono" formControlName='telefono' matInput>
+                </mat-form-field>
+        
+                <mat-form-field appearance="outline" class="input-text">
+                    <mat-label for="rfc">RFC</mat-label>
+                    <input for="rfc" formControlName='rfc' matInput>
+                </mat-form-field>
+            </form>
+            <h2>Documentos</h2>
+            <div id="div-agregar-doc">
+                <button 
+                    (click)="agregarNuevoDocumento()"
+                    [disabled]="primerArchivo || totalDocumentos.length !== selectedFiles.length"
+                    id="boton-agregar-documento"
+                    color="primary"
+                    mat-raised-button
+                    aria-label="Boton agregar nuevo documento"
+                >
+                    Nuevo
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+            <div >
+                @if (desdeListado) {
+                    <div>
+                        @for(item of arrDocNames; track item._id; let idx = $index){
+                            <button 
+                                (click)="descargarArchivo(item._id, item.nombre)"
+                                color="primary"
+                                mat-raised-button
+                                aria-label="Boton agregar nuevo documento"
+                            >
+                            {{item.nombre}}
+                            <mat-icon>download</mat-icon>
+                        </button>
+                        } 
+                    </div>
+                }@else {
+                    <div id="contenedor-lista-documentos">
+                        @for (item of totalDocumentos; track item.id; let idx = $index) {
+                            <div>
+                                <div class="item-lista-documentos">
+                                    <mat-form-field appearance="outline" class="input-text">
+                                        <mat-label>Documento</mat-label>
+                                        <input matInput value={{item.nombre}}>
+                                    </mat-form-field>
+        
+                                    <button type="button" mat-raised-button (click)="fileInput.click()">Cargar</button>
+                                    <input hidden (change)="onFileSelected($event, idx)" #fileInput type="file" id="file"  accept=".txt, .pdf, .doc">
+                    
+                                    <button
+                                        mat-mini-fab
+                                        color="primary"
+                                        aria-label="Boton para borrar un documento"
+                                        (click)="quitarDocumento(idx)"
+                                    >
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                }
+            </div>
+            <div>
+            </div>
+            <div class="document-list">
+                <ul>
+                    @for (document of documents; track document; let idx = $index) {
+                       <li>
+                            <div>
+                                {{document.nombre}}
+                            </div>
+                            <div>
+                                <button
+                                    (click)="clickDeleteDocument(idx)"
+                                    mat-mini-fab>
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </div>
+                        </li>
+                }
+                </ul>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button 
+                mat-raised-button
+                color="primary"
+                (click)="guardarUsuario()"
+                [disabled]="usuario.invalid || !usuario.valid || selectedFiles.length === 0 || selectedFiles.length !== totalDocumentos.length"
+            >
+                Enviar
+                <mat-icon>send</mat-icon>
+            </button>
+            <button 
+                mat-raised-button
+                color="warn"
+                (click)="clickSalir()"
+            >
+                {{desdeListado ? 'Nueva Captura' : 'Salir'}}
+                <mat-icon>arrow_left_ios</mat-icon>
+            </button>
+        </mat-card-actions>
+      </mat-card>
+</section>
+
+

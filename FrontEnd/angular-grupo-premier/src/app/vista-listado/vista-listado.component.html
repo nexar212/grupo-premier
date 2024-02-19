@@ -1,0 +1,44 @@
+<section>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="primerApellido">
+            <th mat-header-cell *matHeaderCellDef> Primer Apellido </th>
+            <td mat-cell *matCellDef="let element"> {{element.primerApellido}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="segundoApellido">
+            <th mat-header-cell *matHeaderCellDef> Segundo Apellido </th>
+            <td mat-cell *matCellDef="let element"> {{element.segundoApellido}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="estatus">
+            <th mat-header-cell *matHeaderCellDef> Estatus </th>
+            <td mat-cell *matCellDef="let element"> {{element.estatus}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ver">
+            <th mat-header-cell *matHeaderCellDef>Ver</th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button aria-label="Boton ver prospecto" (click)="verProspecto(element._id)">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="evaluar">
+            <th mat-header-cell *matHeaderCellDef>Evaluar</th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button aria-label="Boton evaluar prospecto" (click)="evaluarProspecto(element._id)">
+                    <mat-icon>arrow_circle_right</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</section>

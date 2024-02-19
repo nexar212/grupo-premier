@@ -1,0 +1,45 @@
+.input-text {
+    margin: 10px 10px;
+}
+
+button {
+    margin: 0 10px;
+}
+
+#div-agregar-doc {
+    margin: 20px 0
+}
+
+.document-list ul {
+    overflow-y: scroll;
+    max-height: 200px;
+}
+
+.document-list ul li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.document-list ul li div {
+    display: inline-block;
+}
+
+#boton-agregar-documento .mat-icon{
+    margin: 0 auto;
+}
+
+#contenedor-lista-documentos {
+    display: grid;
+    grid-template-columns: 23% 23% 23% 23%;}
+
+.item-lista-documentos {
+    display: grid;
+    grid-template-columns: 60% 20% 20%;
+    align-items: center;
+}
+
+.item-lista-documentos .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+}

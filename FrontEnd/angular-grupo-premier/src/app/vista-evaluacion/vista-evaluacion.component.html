@@ -1,0 +1,95 @@
+<section>
+    <mat-card>
+        <mat-card-content>
+            <mat-card-header>
+                <mat-card-title>Evaluación Prospecto</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-divider></mat-divider>
+
+                <form [formGroup]="usuarioEvaluacion">
+                    <mat-form-field appearance="outline" class="input-text">
+                        <mat-label for="nombre">Nombre</mat-label>
+                        <input for="nombre" formControlName='nombre' matInput [disabled]="true">
+                    </mat-form-field>
+                    
+                    <mat-form-field appearance="outline" class="input-text">
+                        <mat-label for="primer-apellido">Primer Apellido</mat-label>
+                        <input for="primer-apellido" formControlName='primerApellido' matInput>
+                    </mat-form-field>
+            
+                    <mat-form-field appearance="outline" class="input-text">
+                        <mat-label for="segundo-apellido">Segundo Apellido</mat-label>
+                        <input for="segundo-apellido" formControlName='segundoApellido' matInput>
+                    </mat-form-field>
+            
+                    <mat-form-field appearance="outline" class="input-text">
+                        <mat-label for="calle">Calle</mat-label>
+                        <input for="calle" formControlName='calle' matInput>
+                    </mat-form-field>
+            
+                    <mat-form-field appearance="outline" class="input-text">
+                        <mat-label for="numero">Numero</mat-label>
+                        <input for="numero" formControlName='numero' matInput>
+                    </mat-form-field>
+            
+                    <mat-form-field appearance="outline" class="input-text">
+                        <mat-label for="colonia">Colonia</mat-label>
+                        <input for="colonia" formControlName='colonia' matInput>
+                    </mat-form-field>
+            
+                    <mat-form-field appearance="outline" class="input-text">
+                        <mat-label for="codigo-postal">Codigo Postal</mat-label>
+                        <input for="codigo-postal" formControlName='codigoPostal' matInput>
+                    </mat-form-field>
+            
+                    <mat-form-field appearance="outline" class="input-text">
+                        <mat-label for="telefono">Telefono</mat-label>
+                        <input for="telefono" formControlName='telefono' matInput>
+                    </mat-form-field>
+            
+                    <mat-form-field appearance="outline" class="input-text">
+                        <mat-label for="rfc">RFC</mat-label>
+                        <input for="rfc" formControlName='rfc' matInput>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="input-text">
+                        <mat-label for="estatus">Estatus</mat-label>
+                        <input for="rfc" formControlName='estatus' matInput>
+                    </mat-form-field>
+                </form>
+
+                <mat-divider></mat-divider>
+
+                <form [formGroup]="usuariObservaciones">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Observaciones</mat-label>
+                        <textarea matInput formControlName='observaciones'></textarea>
+                    </mat-form-field>
+                </form>
+
+            </mat-card-content>
+        </mat-card-content>
+        <mat-card-actions>
+            @if (userStatus === 'Enviado') {
+                <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="autorizarProspecto()"
+                >
+                    Autorizar
+                    <mat-icon>check</mat-icon>
+                </button>
+                <button 
+                    mat-raised-button
+                    color="warn"
+                    (click)="rechazarProspecto()"
+                    [disabled]="usuariObservaciones.value.observaciones!.trim() === ''"
+                >
+                    Rechazar
+                    <mat-icon>close</mat-icon>
+                </button>
+            }
+        </mat-card-actions>
+    </mat-card>
+</section>

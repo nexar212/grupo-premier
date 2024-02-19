@@ -1,0 +1,27 @@
+
+Ciclos de vida de los classComponents
+
+Mounting - Updating - UnMounting
+
+Mounting
+ - Constructor
+ - Render
+ - Actualización DOM
+ - Func DidMount
+
+Updating solo cambia que no entra el contructor
+
+=========================================================================
+
+Diferencias entre Class-Componenets y Functional-Componenets
+
+- CC trabaja con el ciclo de vida normal, FC no
+- FC ejecuta todo el codigo que tenga dentro, CC solo lo que este dentro del render al aplicar un cambio en el estado
+- FC tienen hooks, aunque ahora no se si tambien entren en los CC
+
+==========================================================================
+
+Pure Function - Impure Functions
+
+ - PF solo trabajan con todo lo que este dentro de ellas, excepto lo que recibe como props
+ - IF trabajan con variables externas a su scoupe, modificandolas
